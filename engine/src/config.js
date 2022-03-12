@@ -1,4 +1,4 @@
-const basePath = process.cwd();
+const basePath = './..';
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 

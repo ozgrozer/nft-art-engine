@@ -1,4 +1,4 @@
-const basePath = process.cwd();
+const basePath = '.'
 const { startCreating, buildSetup } = require(`${basePath}/src/main.js`);
 
 (() => {

@@ -1,10 +1,11 @@
-const basePath = process.cwd();
+const basePath = './..';
 const { NETWORK } = require(`${basePath}/constants/network.js`);
-const fs = require("fs");
-const sha1 = require(`${basePath}/node_modules/sha1`);
-const { createCanvas, loadImage } = require(`${basePath}/node_modules/canvas`);
-const buildDir = `${basePath}/build`;
-const layersDir = `${basePath}/layers`;
+const fs = require('fs');
+const path = require('path');
+const sha1 = require('sha1');
+const { createCanvas, loadImage } = require('canvas');
+const buildDir = path.join(__dirname, '..', 'build')
+const layersDir = path.join(__dirname, '..', 'layers')
 const {
   format,
   baseUri,
