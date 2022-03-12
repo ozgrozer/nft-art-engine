@@ -17,6 +17,9 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "canvas": "^2.9.0",
+    "gif-encoder-2": "^1.0.5",
+    "sha1": "^1.1.1",
     "standard": "^16.0.4"
   }
 }
