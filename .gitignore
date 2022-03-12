@@ -1,0 +1,8 @@
+.env
+.next
+public
+.github
+.DS_Store
+*.sublime-*
+node_modules
+yarn-error.log
