@@ -1,14 +1,4 @@
-const { exec } = require('child_process')
-
-const _exec = command => {
-  return new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
-      if (error) reject(error)
-      if (stderr) reject(stderr)
-      resolve(stdout)
-    })
-  })
-}
+import exec from '@components/functions/exec'
 
 export default async (req, res) => {
   try {
@@ -24,7 +14,7 @@ export default async (req, res) => {
       }
     ]
     const layerConfigurations = JSON.stringify(_layerConfigurations)
-    const result = await _exec(`layerConfigurations='${layerConfigurations}' node ./engine/index.js`)
+    const result = await exec(`layerConfigurations='${layerConfigurations}' node ./engine/index.js`)
     console.log(result)
 
     res.json({ success: true })
