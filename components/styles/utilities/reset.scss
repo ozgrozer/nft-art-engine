@@ -11,10 +11,6 @@ body, input, textarea, button, select {
   box-sizing: border-box;
 }
 
-body, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, input, textarea {
-  margin: 0;
-}
-
 h1, .h1 { font-size: 28px; line-height: 32px; }
 h2, .h2 { font-size: 24px; line-height: 28px; }
 h3, .h3 { font-size: 20px; line-height: 24px; }
@@ -35,12 +31,6 @@ fieldset {
   padding: 0;
   border: none;
   min-width: 0;
-}
-
-button, input, textarea {
-  border: none;
-  outline: none;
-  appearance: none;
 }
 
 button {
