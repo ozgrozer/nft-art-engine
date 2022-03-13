@@ -110,6 +110,8 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
     }
   }
 
+  const possibleCombinations = ''
+
   return (
     <Form
       className={styles.form}
@@ -164,6 +166,13 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
               <div className={styles.label}>
                 <label htmlFor='generateCount'>
                   Generate Count
+                  {
+                    possibleCombinations && (
+                      <span className={styles.labelContent}>
+                        ({possibleCombinations} possible combinations)
+                      </span>
+                    )
+                  }
                 </label>
               </div>
 
@@ -251,7 +260,7 @@ const GeneratedImages = ({ generatedImageIds }) => {
 }
 
 export default () => {
-  // const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
+  // const [uploadedFiles, setUploadedFiles] = useState([{ fieldname: 'layers/eyes/red.png' }])
   // const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
   const [uploadedFiles, setUploadedFiles] = useState()
   const [generatedImageIds, setGeneratedImageIds] = useState(null)
