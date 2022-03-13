@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "canvas": "^2.9.0",
+    "gif-encoder-2": "^1.0.5",
     "multer": "^1.4.4",
     "next": "^12.1.0",
     "next-connect": "^0.12.2",
@@ -20,11 +22,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-toastify": "^8.2.0",
-    "rfv": "^0.0.37"
-  },
-  "devDependencies": {
-    "canvas": "^2.9.0",
-    "gif-encoder-2": "^1.0.5",
+    "rfv": "^0.0.37",
     "sass": "^1.49.9",
     "sha1": "^1.1.1",
     "standard": "^16.0.4"
