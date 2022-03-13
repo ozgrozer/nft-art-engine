@@ -136,7 +136,7 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
                   </div>
 
                   <Input
-                    value='200'
+                    value='500'
                     id='imageWidth'
                     name='imageWidth'
                     className={styles.input}
@@ -151,7 +151,7 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
                   </div>
 
                   <Input
-                    value='200'
+                    value='500'
                     id='imageHeight'
                     name='imageHeight'
                     className={styles.input}
