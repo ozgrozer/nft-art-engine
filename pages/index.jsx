@@ -12,6 +12,7 @@ const ChooseFolder = ({ setUploadedFiles }) => {
   const folderInputRef = useRef(null)
   const chooseFolder = () => folderInputRef.current.click()
 
+  const [uploadProgress, setUploadProgress] = useState('')
   const folderInputOnChange = async event => {
     const formData = new window.FormData()
     for (const key in event.target.files) {
@@ -23,7 +24,10 @@ const ChooseFolder = ({ setUploadedFiles }) => {
       method: 'post',
       data: formData,
       url: '/api/upload',
-      headers: { 'content-type': 'multipart/form-data' }
+      headers: { 'content-type': 'multipart/form-data' },
+      onUploadProgress: event => {
+        setUploadProgress(`${Math.round((event.loaded * 100) / event.total)}%`)
+      }
     })
 
     if (result.data.success) {
@@ -41,9 +45,14 @@ const ChooseFolder = ({ setUploadedFiles }) => {
       <button
         type='button'
         onClick={chooseFolder}
+        disabled={uploadProgress !== ''}
         className={clx(styles.button, styles.block)}
       >
-        Choose Folder
+        {
+          uploadProgress !== ''
+            ? `Upload progress: ${uploadProgress}`
+            : 'Choose Folder'
+        }
       </button>
 
       <input
