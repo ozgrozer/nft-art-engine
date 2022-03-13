@@ -53,7 +53,7 @@ const ChooseFolder = ({ setUploadedFiles }) => {
   )
 }
 
-const AdjustLayers = ({ uploadedFiles }) => {
+const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
   const _folders = []
   for (const key in uploadedFiles) {
     const item = uploadedFiles[key]
@@ -73,43 +73,46 @@ const AdjustLayers = ({ uploadedFiles }) => {
     })
 
     if (result.data.success) {
-      console.log(result.data)
+      setGeneratedImages(true)
     } else {
       console.log('error')
     }
   }
 
   return (
-    <div className='container mx-auto'>
-      <label htmlFor='layers' className='block text-sm font-medium text-gray-700'>
-        Layers
-      </label>
+    <form className='container mx-auto'>
+      <fieldset disabled>
+        <label htmlFor='layers' className='block text-sm font-medium text-gray-700'>
+          Layers
+        </label>
 
-      <textarea
-        rows={7}
-        id='layers'
-        name='layers'
-        value={layers}
-        onChange={e => setLayers(e.target.value)}
-        className='mt-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
-      />
+        <textarea
+          rows={7}
+          id='layers'
+          name='layers'
+          value={layers}
+          onChange={e => setLayers(e.target.value)}
+          className='mt-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
+        />
 
-      <p className='mt-2 text-sm text-gray-500'>
-        Move layers from back to front
-      </p>
+        <p className='mt-2 text-sm text-gray-500'>
+          Move layers from back to front
+        </p>
 
-      <button
-        onClick={generateImages}
-        className='mt-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-      >
-        Generate Images
-      </button>
-    </div>
+        <button
+          onClick={generateImages}
+          className='mt-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+        >
+          Generate Images
+        </button>
+      </fieldset>
+    </form>
   )
 }
 
 export default () => {
-  const [uploadedFiles, setUploadedFiles] = useState()
+  const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
+  const [generatedImages, setGeneratedImages] = useState()
 
   return (
     <>
@@ -121,9 +124,16 @@ export default () => {
         {
           uploadedFiles
             ? (
-              <AdjustLayers
-                uploadedFiles={uploadedFiles}
-              />
+              <>
+                <AdjustLayers
+                  uploadedFiles={uploadedFiles}
+                  setGeneratedImages={setGeneratedImages}
+                />
+
+                {generatedImages && (
+                  <div>generatedImages</div>
+                )}
+              </>
               )
             : (
               <ChooseFolder
