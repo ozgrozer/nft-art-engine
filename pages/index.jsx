@@ -177,15 +177,15 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
 
             <div className={styles.formGroup}>
               <div className={styles.label}>
-                <label htmlFor='rarityDelimeter'>
-                  Rarity Delimiter
+                <label htmlFor='raritySeparator'>
+                  Rarity Separator
                 </label>
               </div>
 
               <Input
                 value='#'
-                id='rarityDelimeter'
-                name='rarityDelimeter'
+                id='raritySeparator'
+                name='raritySeparator'
                 className={styles.input}
               />
             </div>

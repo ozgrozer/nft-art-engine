@@ -1,5 +1,7 @@
 const path = require('path')
 
+const { format, rarityDelimiter, layerConfigurations } = require(path.join(__dirname, 'customConfig.js'))
+
 const { MODE } = require(path.join(__dirname, '..', 'constants', 'blend_mode.js'));
 const { NETWORK } = require(path.join(__dirname, '..', 'constants', 'network.js'));
 
@@ -23,30 +25,30 @@ const solanaMetadata = {
 };
 
 // If you have selected Solana then the collection starts from 0 automatically
-const layerConfigurations = [
-  {
-    growEditionSizeTo: 5,
-    layersOrder: [
-      { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
-    ],
-  },
-];
+// const layerConfigurations = [
+//   {
+//     growEditionSizeTo: 5,
+//     layersOrder: [
+//       { name: "Background" },
+//       { name: "Eyeball" },
+//       { name: "Eye color" },
+//       { name: "Iris" },
+//       { name: "Shine" },
+//       { name: "Bottom lid" },
+//       { name: "Top lid" },
+//     ],
+//   },
+// ];
 
 const shuffleLayerConfigurations = false;
 
 const debugLogs = false;
 
-const format = {
-  width: 512,
-  height: 512,
-  smoothing: false,
-};
+// const format = {
+//   width: 512,
+//   height: 512,
+//   smoothing: false,
+// };
 
 const gif = {
   export: false,
@@ -81,7 +83,7 @@ const background = {
 
 const extraMetadata = {};
 
-const rarityDelimiter = "#";
+// const rarityDelimiter = "#";
 
 const uniqueDnaTorrance = 10000;
 
