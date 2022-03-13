@@ -10,7 +10,7 @@ const upload = multer({
         const splitFieldname = file.fieldname.split('/')
         const folderPath = `./public/uploads/${splitFieldname[1]}`
 
-        if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath)
+        if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath, { recursive: true })
 
         cb(null, folderPath)
       } else {
