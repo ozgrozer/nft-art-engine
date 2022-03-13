@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 
 import clx from '@components/functions/clx'
+import notification from '@components/functions/notification'
 import styles from '@components/styles/pages/home.module.scss'
 
 const ChooseFolder = ({ setUploadedFiles }) => {
@@ -27,7 +28,10 @@ const ChooseFolder = ({ setUploadedFiles }) => {
     if (result.data.success) {
       setUploadedFiles(result.data.files)
     } else {
-      console.log('error')
+      notification({
+        type: 'error',
+        message: result.data.error
+      })
     }
   }
 
@@ -70,7 +74,7 @@ const getImageIdsFromApiResult = apiResult => {
   return imageIds
 }
 
-const AdjustLayers = ({ uploadedFiles, setGeneratedImageIds }) => {
+const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
   const _folders = []
   for (const key in uploadedFiles) {
     const item = uploadedFiles[key]
@@ -98,7 +102,10 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImageIds }) => {
       const imageIds = getImageIdsFromApiResult(result.data.apiResult)
       setGeneratedImageIds(imageIds)
     } else {
-      console.log('error')
+      notification({
+        type: 'error',
+        message: result.data.error
+      })
     }
   }
 
@@ -140,11 +147,13 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImageIds }) => {
 }
 
 const GeneratedImages = ({ generatedImageIds }) => {
+  const unixtime = Math.round(+new Date() / 1000)
+
   return (
     <div className={styles.generatedImages}>
       {
         generatedImageIds.map((imageId, key) => {
-          const imageUrl = `/build/images/${imageId}.png`
+          const imageUrl = `/build/images/${imageId}.png?v=${unixtime}`
 
           return (
             <div
@@ -192,7 +201,7 @@ export default () => {
             uploadedFiles
               ? (
                 <>
-                  <AdjustLayers
+                  <AdjustSettings
                     uploadedFiles={uploadedFiles}
                     setGeneratedImageIds={setGeneratedImageIds}
                   />
