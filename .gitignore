@@ -6,3 +6,4 @@ public
 *.sublime-*
 node_modules
 yarn-error.log
+customConfig.js
