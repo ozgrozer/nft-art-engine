@@ -183,7 +183,7 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
               </div>
 
               <Input
-                value='#'
+                value='%'
                 id='raritySeparator'
                 name='raritySeparator'
                 className={styles.input}
