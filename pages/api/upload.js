@@ -11,7 +11,12 @@ const removeUploadsFolder = async (req, res, next) => {
 
 const upload = multer({
   storage: multer.diskStorage({
-    filename: (req, file, cb) => cb(null, file.originalname),
+    filename: (req, file, cb) => {
+      const newFilename = file.originalname === '.DS_Store'
+        ? 'dsstore'
+        : file.originalname
+      cb(null, newFilename)
+    },
     destination: (req, file, cb) => {
       if (file.originalname !== '.DS_Store') {
         const splitFieldname = file.fieldname.split('/')
