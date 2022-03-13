@@ -8,7 +8,6 @@
   padding: 50px 0 100px 0;
   width: $desktopContainer;
 }
-
 .pageTitle {
   font-size: 24px;
   font-weight: 600;
@@ -16,7 +15,7 @@
   text-transform: uppercase;
 }
 .pageContent {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .form {
@@ -56,5 +55,17 @@
     .spinner {
       @include spinner1();
     }
+  }
+}
+
+.generatedImages {
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+
+  .generatedImage {
+    width: 200px;
+    height: 200px;
   }
 }

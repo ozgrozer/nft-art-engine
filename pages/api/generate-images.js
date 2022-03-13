@@ -14,10 +14,9 @@ export default async (req, res) => {
       }
     ]
     const layerConfigurations = JSON.stringify(_layerConfigurations)
-    const result = await exec(`layerConfigurations='${layerConfigurations}' node ./engine/index.js`)
-    console.log(result)
+    const apiResult = await exec(`layerConfigurations='${layerConfigurations}' node ./engine/index.js`)
 
-    res.json({ success: true })
+    res.json({ success: true, apiResult })
   } catch (err) {
     res.json({ success: false, error: err.message })
   }

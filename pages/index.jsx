@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 
 import clx from '@components/functions/clx'
@@ -54,7 +55,22 @@ const ChooseFolder = ({ setUploadedFiles }) => {
   )
 }
 
-const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
+const getImageIdsFromApiResult = apiResult => {
+  const splitApiResult = apiResult.split('\n')
+
+  const imageIds = []
+  for (const key in splitApiResult) {
+    const item = splitApiResult[key]
+    if (item.indexOf('id') !== -1) {
+      const itemSplit = item.split(':')
+      imageIds.push(itemSplit[1])
+    }
+  }
+
+  return imageIds
+}
+
+const AdjustLayers = ({ uploadedFiles, setGeneratedImageIds }) => {
   const _folders = []
   for (const key in uploadedFiles) {
     const item = uploadedFiles[key]
@@ -68,6 +84,8 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
 
   const [uploadIsInProgress, setUploadIsInProgress] = useState(false)
   const generateImages = async () => {
+    setGeneratedImageIds(null)
+
     setUploadIsInProgress(true)
     const result = await axios({
       method: 'post',
@@ -77,7 +95,8 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
     setUploadIsInProgress(false)
 
     if (result.data.success) {
-      setGeneratedImages(true)
+      const imageIds = getImageIdsFromApiResult(result.data.apiResult)
+      setGeneratedImageIds(imageIds)
     } else {
       console.log('error')
     }
@@ -120,9 +139,42 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
   )
 }
 
+const GeneratedImages = ({ generatedImageIds }) => {
+  return (
+    <div className={styles.generatedImages}>
+      {
+        generatedImageIds.map((imageId, key) => {
+          const imageUrl = `/build/images/${imageId}.png`
+
+          return (
+            <div
+              key={key}
+              className={styles.generatedImage}
+            >
+              <a
+                target='_blank'
+                href={imageUrl}
+                rel='noreferrer'
+              >
+                <Image
+                  width={200}
+                  height={200}
+                  src={imageUrl}
+                />
+              </a>
+            </div>
+          )
+        })
+      }
+    </div>
+  )
+}
+
 export default () => {
+  // const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
+  // const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
   const [uploadedFiles, setUploadedFiles] = useState()
-  const [generatedImages, setGeneratedImages] = useState()
+  const [generatedImageIds, setGeneratedImageIds] = useState(null)
 
   return (
     <>
@@ -142,11 +194,13 @@ export default () => {
                 <>
                   <AdjustLayers
                     uploadedFiles={uploadedFiles}
-                    setGeneratedImages={setGeneratedImages}
+                    setGeneratedImageIds={setGeneratedImageIds}
                   />
 
-                  {generatedImages && (
-                    <div>generatedImages</div>
+                  {generatedImageIds && (
+                    <GeneratedImages
+                      generatedImageIds={generatedImageIds}
+                    />
                   )}
                 </>
                 )
