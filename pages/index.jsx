@@ -124,40 +124,94 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
       }
 
       <fieldset disabled={uploadIsInProgress}>
-        <div className={styles.formGroup}>
-          <div className={styles.label}>
-            <label htmlFor='amount'>
-              Amount
-            </label>
+        <div className={styles.row}>
+          <div className={styles.col}>
+            <div className={styles.formGroup}>
+              <div className={styles.row}>
+                <div className={styles.col}>
+                  <div className={styles.label}>
+                    <label htmlFor='imageWidth'>
+                      Image Width
+                    </label>
+                  </div>
+
+                  <Input
+                    value='200'
+                    id='imageWidth'
+                    name='imageWidth'
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.col}>
+                  <div className={styles.label}>
+                    <label htmlFor='imageHeight'>
+                      Image Height
+                    </label>
+                  </div>
+
+                  <Input
+                    value='200'
+                    id='imageHeight'
+                    name='imageHeight'
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <div className={styles.label}>
+                <label htmlFor='generateCount'>
+                  Generate Count
+                </label>
+              </div>
+
+              <Input
+                value='20'
+                id='generateCount'
+                name='generateCount'
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <div className={styles.label}>
+                <label htmlFor='rarityDelimeter'>
+                  Rarity Delimiter
+                </label>
+              </div>
+
+              <Input
+                value='#'
+                id='rarityDelimeter'
+                name='rarityDelimeter'
+                className={styles.input}
+              />
+            </div>
           </div>
 
-          <Input
-            value='20'
-            id='amount'
-            name='amount'
-            className={styles.input}
-          />
-        </div>
+          <div className={styles.col}>
+            <div className={styles.formGroup}>
+              <div className={styles.label}>
+                <label htmlFor='layers'>
+                  Layers
+                </label>
+              </div>
 
-        <div className={styles.formGroup}>
-          <div className={styles.label}>
-            <label htmlFor='layers'>
-              Layers
-            </label>
+              <Textarea
+                id='layers'
+                name='layers'
+                value={layers}
+                className={styles.textarea}
+              />
+            </div>
+
+            <button className={clx(styles.button, styles.block, styles.green)}>
+              Generate Images
+            </button>
           </div>
-
-          <Textarea
-            rows={7}
-            id='layers'
-            name='layers'
-            value={layers}
-            className={styles.textarea}
-          />
         </div>
-
-        <button className={clx(styles.button, styles.block, styles.green)}>
-          Generate Images
-        </button>
       </fieldset>
     </Form>
   )
@@ -197,10 +251,10 @@ const GeneratedImages = ({ generatedImageIds }) => {
 }
 
 export default () => {
-  // const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
-  // const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
-  const [uploadedFiles, setUploadedFiles] = useState()
-  const [generatedImageIds, setGeneratedImageIds] = useState(null)
+  const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
+  const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
+  // const [uploadedFiles, setUploadedFiles] = useState()
+  // const [generatedImageIds, setGeneratedImageIds] = useState(null)
 
   return (
     <>
