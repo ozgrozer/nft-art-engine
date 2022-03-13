@@ -131,26 +131,32 @@ export default () => {
       </Head>
 
       <div className={styles.container}>
-        {
-          uploadedFiles
-            ? (
-              <>
-                <AdjustLayers
-                  uploadedFiles={uploadedFiles}
-                  setGeneratedImages={setGeneratedImages}
-                />
+        <div className={styles.pageTitle}>
+          NFT Art Engine
+        </div>
 
-                {generatedImages && (
-                  <div>generatedImages</div>
-                )}
-              </>
-              )
-            : (
-              <ChooseFolder
-                setUploadedFiles={setUploadedFiles}
-              />
-              )
-        }
+        <div className={styles.pageContent}>
+          {
+            uploadedFiles
+              ? (
+                <>
+                  <AdjustLayers
+                    uploadedFiles={uploadedFiles}
+                    setGeneratedImages={setGeneratedImages}
+                  />
+
+                  {generatedImages && (
+                    <div>generatedImages</div>
+                  )}
+                </>
+                )
+              : (
+                <ChooseFolder
+                  setUploadedFiles={setUploadedFiles}
+                />
+                )
+          }
+        </div>
       </div>
     </>
   )
