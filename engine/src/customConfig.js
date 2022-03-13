@@ -1,14 +1,22 @@
 
 const format = {
   smoothing: false,
-  width: 50,
-  height: 50
+  width: 200,
+  height: 200
 }
 
 const layerConfigurations = [
   {
-    layersOrder: [{ name: 'Background' },{ name: 'Eyes' },{ name: 'Ears' },{ name: 'Shapes' },{ name: 'Body' },{ name: 'Clothing' },{ name: 'Hand' }],
-    growEditionSizeTo: 8
+    layersOrder: [
+{ name: 'Background' },
+{ name: 'Shapes' },
+{ name: 'Body' },
+{ name: 'Clothing' },
+{ name: 'Eyes' },
+{ name: 'Ears' },
+{ name: 'Hand' },
+    ],
+    growEditionSizeTo: 20
   }
 ]
 
