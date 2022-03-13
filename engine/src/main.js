@@ -1,9 +1,9 @@
-const basePath = './..';
-const { NETWORK } = require(`${basePath}/constants/network.js`);
-const fs = require('fs');
-const path = require('path');
-const sha1 = require('sha1');
-const { createCanvas, loadImage } = require('canvas');
+const fs = require('fs')
+const path = require('path')
+const sha1 = require('sha1')
+const { createCanvas, loadImage } = require('canvas')
+
+const { NETWORK } = require(path.join(__dirname, '..', 'constants', 'network.js'))
 const buildDir = path.join(__dirname, '..', 'build')
 const layersDir = path.join(__dirname, '..', 'layers')
 const {
@@ -22,7 +22,8 @@ const {
   network,
   solanaMetadata,
   gif,
-} = require(`${basePath}/src/config.js`);
+} = require(path.join(__dirname, 'config.js'))
+
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = format.smoothing;
@@ -30,7 +31,7 @@ var metadataList = [];
 var attributesList = [];
 var dnaList = new Set();
 const DNA_DELIMITER = "-";
-const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
+const HashlipsGiffer = require(path.join(__dirname, '..', 'modules', 'HashlipsGiffer.js'));
 
 let hashlipsGiffer = null;
 

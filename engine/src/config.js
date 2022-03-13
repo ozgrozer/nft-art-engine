@@ -1,6 +1,7 @@
-const basePath = './..';
-const { MODE } = require(`${basePath}/constants/blend_mode.js`);
-const { NETWORK } = require(`${basePath}/constants/network.js`);
+const path = require('path')
+
+const { MODE } = require(path.join(__dirname, '..', 'constants', 'blend_mode.js'));
+const { NETWORK } = require(path.join(__dirname, '..', 'constants', 'network.js'));
 
 const network = NETWORK.eth;
 

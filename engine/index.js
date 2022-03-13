@@ -1,7 +1,6 @@
-const basePath = '.'
-const { startCreating, buildSetup } = require(`${basePath}/src/main.js`);
+const path = require('path')
 
-(() => {
-  buildSetup();
-  startCreating();
-})();
+const { startCreating, buildSetup } = require(path.join(__dirname, 'src', 'main.js'))
+
+buildSetup()
+startCreating()
