@@ -2,7 +2,7 @@ import exec from '@components/functions/exec'
 
 export default async (req, res) => {
   try {
-    const { amount, layers } = req.body
+    const { generateCount, layers } = req.body
 
     const layersSplit = layers.split('\n')
     const layersOrder = layersSplit.map(item => { return { name: item } })
@@ -10,7 +10,7 @@ export default async (req, res) => {
     const _layerConfigurations = [
       {
         layersOrder,
-        growEditionSizeTo: amount
+        growEditionSizeTo: generateCount
       }
     ]
     const layerConfigurations = JSON.stringify(_layerConfigurations)

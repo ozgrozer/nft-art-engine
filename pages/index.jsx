@@ -251,10 +251,10 @@ const GeneratedImages = ({ generatedImageIds }) => {
 }
 
 export default () => {
-  const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
-  const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
-  // const [uploadedFiles, setUploadedFiles] = useState()
-  // const [generatedImageIds, setGeneratedImageIds] = useState(null)
+  // const [uploadedFiles, setUploadedFiles] = useState([{ destination: './././one' }])
+  // const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
+  const [uploadedFiles, setUploadedFiles] = useState()
+  const [generatedImageIds, setGeneratedImageIds] = useState(null)
 
   return (
     <>
