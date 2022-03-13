@@ -7,7 +7,12 @@
 .container {
   margin: 0 auto;
   padding: 50px 0 100px 0;
-  width: $desktopContainer;
+  @media (max-width: $mobile-max) {
+    width: $mobileContainer;
+  }
+  @media (min-width: $tablet-min) {
+    width: $desktopContainer;
+  }
 }
 .pageTitle {
   font-size: 24px;
@@ -17,6 +22,30 @@
 }
 .pageContent {
   margin-top: 40px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: $mobile-max) {
+    flex-direction: column;
+  }
+  @media (min-width: $tablet-min) {
+    gap: 20px;
+  }
+
+  .col {
+    @media (max-width: $mobile-max) {
+      width: 100%;
+    }
+    @media (min-width: $tablet-min) {
+      width: 50%;
+    }
+
+    .row {
+      gap: 20px;
+    }
+  }
 }
 
 .form {
@@ -40,6 +69,10 @@
 
   .input, .textarea {
     margin-top: 10px;
+  }
+
+  .textarea {
+    height: 182px;
   }
 
   .button {
