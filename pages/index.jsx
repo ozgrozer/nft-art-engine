@@ -37,7 +37,7 @@ const ChooseFolder = ({ setUploadedFiles }) => {
   }
 
   return (
-    <div>
+    <div className={styles.chooseFolderWrapper}>
       <button
         type='button'
         onClick={chooseFolder}

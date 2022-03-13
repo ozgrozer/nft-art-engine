@@ -106,6 +106,15 @@
   }
 }
 
+.chooseFolderWrapper {
+  display: flex;
+  justify-content: center;
+
+  .button {
+    width: 50%;
+  }
+}
+
 .generatedImages {
   gap: 20px;
   display: flex;
