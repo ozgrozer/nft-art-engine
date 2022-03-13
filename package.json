@@ -1,6 +1,7 @@
 {
-  "name": "nft-art-engine",
   "license": "MIT",
+  "name": "nft-art-engine",
+  "cacheDirectories": [".next/cache"],
   "engines": {
     "npm": "^6.x",
     "yarn": "^1.x",
