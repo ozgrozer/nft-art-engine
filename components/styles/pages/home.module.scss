@@ -1,5 +1,6 @@
 @import '@components/styles/vars';
 @import '@components/styles/utilities/mixins';
+@import '@components/styles/designSystem/inputs';
 @import '@components/styles/designSystem/buttons';
 @import '@components/styles/designSystem/textareas';
 
@@ -28,12 +29,16 @@
     }
   }
 
+  .formGroup {
+    margin-top: 24px;
+  }
+
   .label {
     font-size: 16px;
     text-transform: uppercase;
   }
 
-  .textarea {
+  .input, .textarea {
     margin-top: 10px;
   }
 
@@ -67,5 +72,7 @@
   .generatedImage {
     width: 200px;
     height: 200px;
+    overflow: hidden;
+    border-radius: $borderRadius;
   }
 }

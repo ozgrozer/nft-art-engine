@@ -2,6 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
+import { Form, Input, Textarea } from 'rfv'
 
 import clx from '@components/functions/clx'
 import notification from '@components/functions/notification'
@@ -84,16 +85,16 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
     }
   }
   const folders = [...new Set(_folders)]
-  const [layers, setLayers] = useState(folders.join('\n'))
+  const layers = folders.join('\n')
 
   const [uploadIsInProgress, setUploadIsInProgress] = useState(false)
-  const generateImages = async () => {
+  const generateImages = async res => {
     setGeneratedImageIds(null)
 
     setUploadIsInProgress(true)
     const result = await axios({
       method: 'post',
-      data: { layers },
+      data: res.items,
       url: '/api/generate-images'
     })
     setUploadIsInProgress(false)
@@ -110,7 +111,10 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
   }
 
   return (
-    <div className={styles.form}>
+    <Form
+      className={styles.form}
+      onSubmit={generateImages}
+    >
       {
         uploadIsInProgress && (
           <div className={styles.spinnerWrapper}>
@@ -120,29 +124,42 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
       }
 
       <fieldset disabled={uploadIsInProgress}>
-        <div>
-          <label htmlFor='layers' className={styles.label}>
-            Layers
-          </label>
+        <div className={styles.formGroup}>
+          <div className={styles.label}>
+            <label htmlFor='amount'>
+              Amount
+            </label>
+          </div>
+
+          <Input
+            value='20'
+            id='amount'
+            name='amount'
+            className={styles.input}
+          />
         </div>
 
-        <textarea
-          rows={7}
-          id='layers'
-          name='layers'
-          value={layers}
-          className={styles.textarea}
-          onChange={e => setLayers(e.target.value)}
-        />
+        <div className={styles.formGroup}>
+          <div className={styles.label}>
+            <label htmlFor='layers'>
+              Layers
+            </label>
+          </div>
 
-        <button
-          onClick={generateImages}
-          className={clx(styles.button, styles.block, styles.green)}
-        >
+          <Textarea
+            rows={7}
+            id='layers'
+            name='layers'
+            value={layers}
+            className={styles.textarea}
+          />
+        </div>
+
+        <button className={clx(styles.button, styles.block, styles.green)}>
           Generate Images
         </button>
       </fieldset>
-    </div>
+    </Form>
   )
 }
 
