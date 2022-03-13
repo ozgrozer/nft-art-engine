@@ -2,6 +2,13 @@ import fs from 'fs'
 import multer from 'multer'
 import nextConnect from 'next-connect'
 
+import exec from '@components/functions/exec'
+
+const removeUploadsFolder = async (req, res, next) => {
+  await exec('rm -rdf ./public/uploads/*')
+  next()
+}
+
 const upload = multer({
   storage: multer.diskStorage({
     filename: (req, file, cb) => cb(null, file.originalname),
@@ -33,6 +40,8 @@ const apiRoute = nextConnect({
     res.status(405).json({ error: `Method '${req.method}' Not Allowed` })
   }
 })
+
+apiRoute.use(removeUploadsFolder)
 
 apiRoute.use(upload.any())
 
