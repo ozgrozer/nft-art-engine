@@ -4,8 +4,8 @@ const sha1 = require('sha1')
 const { createCanvas, loadImage } = require('canvas')
 
 const { NETWORK } = require(path.join(__dirname, '..', 'constants', 'network.js'))
-const buildDir = path.join(__dirname, '..', 'build')
-const layersDir = path.join(__dirname, '..', 'layers')
+const buildDir = path.join(__dirname, '..', '..', 'public', 'build')
+const layersDir = path.join(__dirname, '..', '..', 'public', 'uploads')
 const {
   format,
   baseUri,
