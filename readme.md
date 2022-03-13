@@ -1,8 +1,8 @@
 # NFT Art Engine
 
-Demo
+Preview
 
-[https://nft-art-engine.herokuapp.com](https://nft-art-engine.herokuapp.com)
+--
 
 ## Contribution
 
