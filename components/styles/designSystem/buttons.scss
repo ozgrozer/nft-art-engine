@@ -1,0 +1,58 @@
+@import '@components/styles/vars';
+
+.button {
+  margin: 0;
+  height: 48px;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+  padding: 12px 30px;
+  color: $color-black;
+  display: inline-block;
+  border-radius: $borderRadius;
+  border: 1px solid transparent;
+  background-color: $color-gray3;
+  &:hover {
+    background-color: darken($color-gray3, 5%);
+  }
+  &:active {
+    background-color: darken($color-gray3, 10%);
+  }
+  &:disabled, &.disabled {
+    cursor: default;
+    color: $color-white;
+    background-color: $color-gray1 !important;
+  }
+  &.block {
+    width: 100%;
+    display: block;
+  }
+  &.ttu {
+    text-transform: uppercase;
+  }
+  &.bdrs {
+    border-radius: $borderRadius;
+  }
+  &.black {
+    color: $color-white;
+    background-color: $color-black;
+    &:hover {
+      background-color: darken($color-black, 5%);
+    }
+    &:active {
+      background-color: darken($color-black, 10%);
+    }
+  }
+  &.green {
+    color: $color-white;
+    background-color: $color-green;
+    &:hover {
+      background-color: darken($color-green, 5%);
+    }
+    &:active {
+      background-color: darken($color-green, 10%);
+    }
+  }
+}

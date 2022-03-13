@@ -1,0 +1,23 @@
+@import '@components/styles/vars';
+@import '@components/styles/designSystem/buttons';
+@import '@components/styles/designSystem/textareas';
+
+.container {
+  margin: 50px auto;
+  width: $desktopContainer;
+}
+
+.form {
+  .label {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .textarea {
+    margin-top: 6px;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}
