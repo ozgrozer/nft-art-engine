@@ -29,7 +29,7 @@
   &::-ms-input-placeholder { color: $color; }
 }
 
-@mixin spinner1 ($widthAndHeight: 30px, $border: 6px, $backColor: $color-gray3, $frontColor: $color-midnight) {
+@mixin spinner1 ($widthAndHeight: 30px, $border: 4px, $backColor: $color-gray3, $frontColor: $color-midnight) {
   $time: 400ms;
   border-radius: 50%;
   position: relative;

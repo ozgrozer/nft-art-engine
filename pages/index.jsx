@@ -66,12 +66,15 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
   const folders = [...new Set(_folders)]
   const [layers, setLayers] = useState(folders.join('\n'))
 
+  const [uploadIsInProgress, setUploadIsInProgress] = useState(false)
   const generateImages = async () => {
+    setUploadIsInProgress(true)
     const result = await axios({
       method: 'post',
       data: { layers },
       url: '/api/generate-images'
     })
+    setUploadIsInProgress(false)
 
     if (result.data.success) {
       setGeneratedImages(true)
@@ -81,8 +84,16 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
   }
 
   return (
-    <form className={styles.form}>
-      <fieldset disabled={false}>
+    <div className={styles.form}>
+      {
+        uploadIsInProgress && (
+          <div className={styles.spinnerWrapper}>
+            <div className={styles.spinner} />
+          </div>
+        )
+      }
+
+      <fieldset disabled={uploadIsInProgress}>
         <div>
           <label htmlFor='layers' className={styles.label}>
             Layers
@@ -105,7 +116,7 @@ const AdjustLayers = ({ uploadedFiles, setGeneratedImages }) => {
           Generate Images
         </button>
       </fieldset>
-    </form>
+    </div>
   )
 }
 
