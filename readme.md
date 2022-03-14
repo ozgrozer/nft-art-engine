@@ -1,8 +1,12 @@
 # NFT Art Engine
 
-Preview
+Why all of these have different type of image upload issues?
 
---
+[https://nft-art-engine.glitch.me/](https://nft-art-engine.glitch.me/)
+
+[https://nft-art-engine.vercel.app/](https://nft-art-engine.vercel.app/)
+
+[https://nft-art-engine.herokuapp.com/](https://nft-art-engine.herokuapp.com/)
 
 ## Contribution
 
