@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "mkdir -p public/uploads && ls"
   },
   "dependencies": {
     "axios": "^0.26.1",
