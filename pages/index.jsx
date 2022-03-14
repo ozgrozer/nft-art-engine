@@ -69,22 +69,7 @@ const ChooseFolder = ({ setUploadedFiles }) => {
   )
 }
 
-const getImageIdsFromApiResult = apiResult => {
-  const splitApiResult = apiResult.split('\n')
-
-  const imageIds = []
-  for (const key in splitApiResult) {
-    const item = splitApiResult[key]
-    if (item.indexOf('id') !== -1) {
-      const itemSplit = item.split(':')
-      imageIds.push(itemSplit[1])
-    }
-  }
-
-  return imageIds
-}
-
-const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
+const AdjustSettings = ({ uploadedFiles, setGeneratedImageUrls }) => {
   const _folders = []
   for (const key in uploadedFiles) {
     const item = uploadedFiles[key]
@@ -98,7 +83,7 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
 
   const [uploadIsInProgress, setUploadIsInProgress] = useState(false)
   const generateImages = async res => {
-    setGeneratedImageIds(null)
+    setGeneratedImageUrls(null)
 
     setUploadIsInProgress(true)
     const result = await axios({
@@ -109,8 +94,7 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
     setUploadIsInProgress(false)
 
     if (result.data.success) {
-      const imageIds = getImageIdsFromApiResult(result.data.apiResult)
-      setGeneratedImageIds(imageIds)
+      setGeneratedImageUrls(result.data.images)
     } else {
       notification({
         type: 'error',
@@ -235,15 +219,11 @@ const AdjustSettings = ({ uploadedFiles, setGeneratedImageIds }) => {
   )
 }
 
-const GeneratedImages = ({ generatedImageIds }) => {
-  const unixtime = Math.round(+new Date() / 1000)
-
+const GeneratedImages = ({ generatedImageUrls }) => {
   return (
     <div className={styles.generatedImages}>
       {
-        generatedImageIds.map((imageId, key) => {
-          const imageUrl = `/build/images/${imageId}.png?v=${unixtime}`
-
+        generatedImageUrls.map((imageUrl, key) => {
           return (
             <div
               key={key}
@@ -270,9 +250,9 @@ const GeneratedImages = ({ generatedImageIds }) => {
 
 export default () => {
   // const [uploadedFiles, setUploadedFiles] = useState([{ fieldname: 'layers/eyes/red.png' }])
-  // const [generatedImageIds, setGeneratedImageIds] = useState(['1', '2', '3', '4'])
+  // const [generatedImageUrls, setGeneratedImageUrls] = useState(['1', '2', '3', '4'])
   const [uploadedFiles, setUploadedFiles] = useState()
-  const [generatedImageIds, setGeneratedImageIds] = useState(null)
+  const [generatedImageUrls, setGeneratedImageUrls] = useState(null)
 
   return (
     <>
@@ -292,12 +272,12 @@ export default () => {
                 <>
                   <AdjustSettings
                     uploadedFiles={uploadedFiles}
-                    setGeneratedImageIds={setGeneratedImageIds}
+                    setGeneratedImageUrls={setGeneratedImageUrls}
                   />
 
-                  {generatedImageIds && (
+                  {generatedImageUrls && (
                     <GeneratedImages
-                      generatedImageIds={generatedImageIds}
+                      generatedImageUrls={generatedImageUrls}
                     />
                   )}
                 </>
