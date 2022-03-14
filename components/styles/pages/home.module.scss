@@ -111,7 +111,12 @@
   justify-content: center;
 
   .button {
-    width: 50%;
+    @media (max-width: $mobile-max) {
+      width: 100%;
+    }
+    @media (min-width: $tablet-min) {
+      width: 50%;
+    }
   }
 }
 
